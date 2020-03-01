@@ -29,6 +29,7 @@ class Administration(models.Model):
   date = models.DateTimeField()
   medication = models.ForeignKey(Medication, on_delete=models.PROTECT)
   dose = models.TextField()
+  status = models.BooleanField(default=None, blank=True, null=True)
   special_instructions = models.TextField()
   # patient = models.ForeignKey(User)
 
