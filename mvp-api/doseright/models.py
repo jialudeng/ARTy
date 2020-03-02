@@ -28,7 +28,7 @@ class Medication(models.Model):
 class Administration(models.Model):
 
   def __str__(self):
-    return f"{self.title}, {self.start}"
+    return f"{self.medication.brand_name}, {self.start}"
 
   start = models.DateTimeField()
   end = models.DateTimeField()

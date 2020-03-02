@@ -20,6 +20,7 @@ class Command(BaseCommand):
             side_effects = row[6],
             storage = row[7],
             image = row[8],
-            info = row[9]
+            video = row[9],
+            info = row[10]
           )
           med.save()          
