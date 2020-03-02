@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import moment from "moment";
 import { Calendar, momentLocalizer, Views } from "react-big-calendar";
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import axios from 'axios';
 
-import { Modal } from './Modal';
+import MedModal from './MedModal';
 
 const localizer = momentLocalizer(moment);
+const useStyles = makeStyles(theme => ({
+  outerDiv: {
+    fontFamily: 'Lato'
+  }
+}))
 
-export function IVFCalendar() {
+export default function IVFCalendar() {
+  const classes = useStyles();
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
@@ -16,7 +23,7 @@ export function IVFCalendar() {
       .then(response => {
         // add med name and dosage to each event's title 
         let result = response.data.map((data) => {
-          data.title = `${data.medication.brand_name} ${data.medication.dosage}`;
+          data.title = `${data.medication.brand_name} ${data.medication.dosage} ${moment.utc(data.start).format('HH:mm')}`;
           data.start = moment.utc(data.start).toDate();
           data.end = moment.utc(data.end).toDate();
           return data;
@@ -34,14 +41,20 @@ export function IVFCalendar() {
 
   const handleSelect = e => {
     // prints the information on the selected medication
-    console.log(e.medication);
     setModal(true);
-    setContent(e.medication);
+    setContent(e);
+  }
 
+  const handleUnselect = e => {
+    // if the clicked element doesn't have a title prop, then close the modal
+    if (!e.target.title && e.target.id !== "transition-modal-title" && e.target.id !== "transition-modal-description") {
+      setModal(false);
+      setContent({});
+    } 
   }
 
   return (
-    <div>
+    <div onClick={handleUnselect} className={classes.outerDiv}>
       <Calendar
       selectable
       localizer={localizer}
@@ -51,7 +64,7 @@ export function IVFCalendar() {
       style={{ height: 1000 }}
       onSelectEvent={handleSelect}
     />
-    {modal && <Modal content={content}/>}
+    {modal && <MedModal content={content} onClose={handleUnselect} open={modal}/>}
   </div>
   )
 }
