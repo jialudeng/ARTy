@@ -4,6 +4,8 @@ import { Calendar, momentLocalizer, Views } from "react-big-calendar";
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import axios from 'axios';
 
+import { Modal } from './Modal';
+
 const localizer = momentLocalizer(moment);
 
 export function IVFCalendar() {
@@ -26,9 +28,16 @@ export function IVFCalendar() {
       })
   }, []);
 
+  const [modal, setModal] = useState(false);
+
+  const [content, setContent ] = useState({})
+
   const handleSelect = e => {
     // prints the information on the selected medication
-    console.log(e.medication)
+    console.log(e.medication);
+    setModal(true);
+    setContent(e.medication);
+
   }
 
   return (
@@ -42,6 +51,7 @@ export function IVFCalendar() {
       style={{ height: 1000 }}
       onSelectEvent={handleSelect}
     />
+    {modal && <Modal content={content}/>}
   </div>
   )
 }
