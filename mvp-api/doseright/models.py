@@ -26,10 +26,15 @@ class Medication(models.Model):
   info = models.URLField()
 
 class Administration(models.Model):
-  date = models.DateTimeField()
+
+  def __str__(self):
+    return f"{self.title}, {self.start}"
+
+  start = models.DateTimeField()
+  end = models.DateTimeField()
   medication = models.ForeignKey(Medication, on_delete=models.PROTECT)
   dose = models.TextField()
-  status = models.BooleanField(default=None, blank=True, null=True)
+  taken = models.BooleanField(default=None, blank=True, null=True)
   special_instructions = models.TextField()
   # patient = models.ForeignKey(User)
 

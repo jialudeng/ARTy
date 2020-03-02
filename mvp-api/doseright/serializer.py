@@ -5,3 +5,4 @@ class AdministrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Administration
         fields = '__all__'
+        depth = 2

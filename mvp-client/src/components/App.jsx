@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { IVFCalendar}  from './IVFCalendar'
 
-class App extends React.Component {
-  render() {
-    return (
-      <h1>Hello World!</h1>
-    )
-  }
+export function App() {
+
+  return (
+    <div>
+      <IVFCalendar />
+    </div>
+  )
 }
-export default App;

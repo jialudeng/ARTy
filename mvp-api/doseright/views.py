@@ -11,3 +11,4 @@ class Administrations(APIView):
     admins = Administration.objects.all()
     serializer = AdministrationSerializer(admins, many=True)
     return Response(serializer.data)
+
