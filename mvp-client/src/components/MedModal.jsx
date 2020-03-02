@@ -42,7 +42,7 @@ export default function MedModal({ content, onClose, open }) {
   const classes = useStyles();
 
   return (
-    <div>
+    <div className="MedModal">
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -56,7 +56,7 @@ export default function MedModal({ content, onClose, open }) {
         }}
       >
         <Fade in={open}>
-          <div className={classes.modalPaper} title={content.medication.brand_name}>
+          <div className={classes.modalPaper}>
             <div className={classes.root}>
               <Grid container spacing={0}>
                 <Grid item xs={6}>
@@ -81,7 +81,10 @@ export default function MedModal({ content, onClose, open }) {
                 </Grid>
                 <Grid item xs={6}>
                   <div className={classes.centerDiv}>
-                    <img src={content.medication.image} title={content.medication.brand_name} />
+                    <img 
+                      src={content.medication.image}
+                      style={{ width: '100%' }} 
+                    />
                   </div>
                 </Grid>
               </Grid>

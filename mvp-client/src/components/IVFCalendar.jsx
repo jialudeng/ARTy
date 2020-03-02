@@ -47,7 +47,7 @@ export default function IVFCalendar() {
 
   const handleUnselect = e => {
     // if the clicked element doesn't have a title prop, then close the modal
-    if (!e.target.title && e.target.id !== "transition-modal-title" && e.target.id !== "transition-modal-description") {
+    if (!e.target.title && e.target.className !== 'MedModal') {
       setModal(false);
       setContent({});
     } 
