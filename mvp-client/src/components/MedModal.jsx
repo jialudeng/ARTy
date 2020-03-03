@@ -80,28 +80,19 @@ export default function MedModal({ content, onClose, open }) {
                       <a href={content.medication.info}><strong>More Info</strong></a>
                       <br />
                     </p>
-                    <SelectStatus taken={content.taken} />
+                    <SelectStatus content={content} />
                   </div>
                 </Grid>
                 <Grid item xs={6}>
                   <div className={classes.centerDiv}>
                     <img 
                       src={content.medication.image}
-                      style={{ width: '100%' }} 
+                      style={{ width: '100%' , display: 'block'}} 
                     />
                   </div>
                 </Grid>
               </Grid>
               <Grid container spacing={3}>
-                <Grid item xs={4}>
-                  <SelectStatus />
-                </Grid>
-                <Grid item xs={4}>
-                  <SelectStatus />
-                </Grid>
-                <Grid item xs={4}>
-                  <SelectStatus />
-                </Grid>
               </Grid>
             </div>
           </div>

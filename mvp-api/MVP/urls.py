@@ -21,4 +21,5 @@ from doseright import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/administrations', views.Administrations.as_view()),
+    path('api/v1/administrations/<int:pk>', views.Administrations.as_view()),
 ]
