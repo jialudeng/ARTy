@@ -4,7 +4,8 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
+
+import SelectStatus from './SelectStatus';
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -13,6 +14,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     fontFamily: 'Lato',
     lineHeight: 1.5,
+    letterSpacing: 1.1,
   },
   modalPaper: {
     backgroundColor: theme.palette.background.paper,
@@ -34,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '100%',
+    height: '100%'
   },
 }));
 
@@ -76,7 +78,9 @@ export default function MedModal({ content, onClose, open }) {
                       <a href={content.medication.video.toString()}><strong>Video Instructions</strong></a>
                       <br />
                       <a href={content.medication.info}><strong>More Info</strong></a>
+                      <br />
                     </p>
+                    <SelectStatus taken={content.taken} />
                   </div>
                 </Grid>
                 <Grid item xs={6}>
@@ -88,9 +92,18 @@ export default function MedModal({ content, onClose, open }) {
                   </div>
                 </Grid>
               </Grid>
+              <Grid container spacing={3}>
+                <Grid item xs={4}>
+                  <SelectStatus />
+                </Grid>
+                <Grid item xs={4}>
+                  <SelectStatus />
+                </Grid>
+                <Grid item xs={4}>
+                  <SelectStatus />
+                </Grid>
+              </Grid>
             </div>
-
-            
           </div>
         </Fade>
       </Modal>
