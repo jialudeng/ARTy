@@ -23,4 +23,5 @@ class Command(BaseCommand):
             video = row[9],
             info = row[10]
           )
-          med.save()          
+          med.save()
+          

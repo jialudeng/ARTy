@@ -6,7 +6,6 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import axios from 'axios';
 
 import MedModal from './MedModal';
-import AlertSuccess from './AlertStatus';
 
 const localizer = momentLocalizer(moment);
 
@@ -29,6 +28,13 @@ const useStyles = makeStyles(theme => ({
 
 export default function IVFCalendar() {
   const classes = useStyles();
+
+  const eventStyleGetter = (event) => ({
+    style: {
+      backgroundColor: '#1976d2'
+    }
+  })
+
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
@@ -54,7 +60,7 @@ export default function IVFCalendar() {
 
   const handleOpen = (e) => {
     setOpen(true);
-    setContent(e)
+    setContent(e);
   };
 
   const handleClose = () => {
@@ -62,28 +68,26 @@ export default function IVFCalendar() {
     setContent({});
   };
 
-  const eventStyleGetter = (event) => ({
-    style: {
-      backgroundColor: '#1976d2'
-    }
-  })
-
   return (
-    <>
-    <AlertSuccess />
-    <div className={classes.outerDiv}>
-      <Calendar
-      selectable
-      localizer={localizer}
-      events = {events}
-      startAccessor="start"
-      endAccessor="end"
-      style={{ height: 1000 }}
-      onSelectEvent={handleOpen}
-      eventPropGetter={eventStyleGetter}
-    />
-    {open && <MedModal content={content} onClose={handleClose} open={open}/>}
+    <div>
+      <div className={classes.outerDiv}>
+        <Calendar
+        selectable
+        localizer={localizer}
+        events = {events}
+        startAccessor="start"
+        endAccessor="end"
+        style={{ height: 1000 }}
+        onSelectEvent={handleOpen}
+        eventPropGetter={eventStyleGetter}
+      />
+      {open && 
+        <MedModal 
+          content={content} 
+          onClose={handleClose} 
+          open={open} 
+        />}
+    </div>
   </div>
-  </>
   )
 }

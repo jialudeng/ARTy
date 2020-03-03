@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SelectStatus({ content }) {
+export default function SelectStatus({ content, onSuccess, onError }) {
   const classes = useStyles();
   const [status, setStatus] = React.useState('');
 
@@ -29,8 +29,8 @@ export default function SelectStatus({ content }) {
     setLabelWidth(inputLabel.current.offsetWidth);
   }, []);
 
-  const handleChange = event => {
-    setStatus(event.target.value);
+  const handleChange = event => {  
+
     content.taken = event.target.value;
     // need to send axios patch request
     axios.patch(`http://localhost:8000/api/v1/administrations/${content.id}`, {
@@ -38,9 +38,14 @@ export default function SelectStatus({ content }) {
     })
       .then(res => {
         console.log(res)
+        setStatus(event.target.value);
       })
-      .catch(res => {
-        console.log(res)
+      .then(() => {
+        onSuccess();
+      })
+      .catch(err => {
+        console.log(err);
+        onError();
       })
   };
 

@@ -10,16 +10,26 @@ const useStyles = makeStyles(theme => ({
       marginTop: theme.spacing(2),
     },
     zIndex: '100',
-    position: 'fixed'
+    // position: 'fixed'
   },
 }));
 
-export default function AlertSuccess() {
+export function AlertSuccess() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <Alert severity="success" style={{ opacity: 0.5 }}>This is a success alert — check it out!</Alert>
+      <Alert severity="success">Status has been updated!</Alert>
+    </div>
+  );
+}
+
+export function AlertError() {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.root}>
+    <Alert severity="error">There is an error updating your status, please contact your care team.</Alert>
     </div>
   );
 }

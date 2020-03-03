@@ -11,7 +11,7 @@ from django.contrib.auth.models import AbstractUser
 class Medication(models.Model):
 
   def __str__(self):
-    return f"{self.brand_name}, {self.dosage}"
+    return f"{self.id}-{self.brand_name}, {self.dosage}"
   
   generic_name = models.CharField(max_length=128)
   brand_name = models.CharField(max_length=128)
@@ -28,14 +28,14 @@ class Medication(models.Model):
 class Administration(models.Model):
 
   def __str__(self):
-    return f"{self.medication.brand_name}, {self.start}"
+    return f"{self.id}-{self.medication.brand_name}"
 
   start = models.DateTimeField()
   end = models.DateTimeField()
   medication = models.ForeignKey(Medication, on_delete=models.PROTECT)
   dose = models.TextField()
   taken = models.BooleanField(default=None, blank=True, null=True)
-  special_instructions = models.TextField()
+  special_instructions = models.TextField(blank=True)
   # patient = models.ForeignKey(User)
 
 

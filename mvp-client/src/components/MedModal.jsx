@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import appTheme from '../styles/theme';
 
 import SelectStatus from './SelectStatus';
+import { AlertSuccess, AlertError } from './AlertStatus';
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -50,6 +51,21 @@ const useStyles = makeStyles(theme => ({
 export default function MedModal({ content, onClose, open }) {
   const classes = useStyles();
 
+  const [success, setSuccess] = React.useState(false);
+
+  const handleSuccess = () => {
+    setSuccess(true);
+    
+    setTimeout(() => {setSuccess(false)}, 1000);
+  }
+
+  const [error, setError] = React.useState(false);
+
+  const handleError = () => {
+    setError(true);
+    setTimeout(() => {setError(false)}, 1000);
+  }
+
   return (
     <ThemeProvider theme={appTheme}>
       <div className="MedModal">
@@ -67,6 +83,8 @@ export default function MedModal({ content, onClose, open }) {
         >
           <Fade in={open}>
             <div className={classes.modalPaper}>
+            {success && <AlertSuccess />}
+            {error && <AlertError />}
               <div className={classes.root}>
                 <Grid container spacing={0}>
                   <Grid item xs={6}>
@@ -90,7 +108,8 @@ export default function MedModal({ content, onClose, open }) {
                       <img 
                         src={content.medication.image}
                         style={{
-                          width: '100%',
+                          maxWidth: '70%',
+                          maxHeight: '70%',
                           display: 'block',
                           borderRadius: '5px'
                         }} 
@@ -107,7 +126,11 @@ export default function MedModal({ content, onClose, open }) {
                     More Information
                     </Button>
                   </div>
-                  <SelectStatus content={content} />
+                  <SelectStatus 
+                    content={content} 
+                    onSuccess={handleSuccess}
+                    onError={handleError}
+                  />
                 </Grid>
               </div>
             </div>
