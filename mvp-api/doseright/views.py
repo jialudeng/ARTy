@@ -23,5 +23,5 @@ class Administrations(APIView):
     if serializer.is_valid():
       serializer.save()
       return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
-    return Response("LOL", status=status.HTTP_400_BAD_REQUEST)
+    return Response(status=status.HTTP_400_BAD_REQUEST)
 

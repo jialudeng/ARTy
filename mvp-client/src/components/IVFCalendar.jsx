@@ -4,13 +4,12 @@ import moment from "moment";
 import { Calendar, momentLocalizer, Views } from "react-big-calendar";
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import axios from 'axios';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
 
 import MedModal from './MedModal';
+import AlertSuccess from './AlertStatus';
 
 const localizer = momentLocalizer(moment);
+
 const useStyles = makeStyles(theme => ({
   outerDiv: {
     fontFamily: 'Lato'
@@ -49,7 +48,6 @@ export default function IVFCalendar() {
       })
   }, []);
 
-  // const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   const [content, setContent ] = useState({})
@@ -64,7 +62,15 @@ export default function IVFCalendar() {
     setContent({});
   };
 
+  const eventStyleGetter = (event) => ({
+    style: {
+      backgroundColor: '#1976d2'
+    }
+  })
+
   return (
+    <>
+    <AlertSuccess />
     <div className={classes.outerDiv}>
       <Calendar
       selectable
@@ -74,9 +80,10 @@ export default function IVFCalendar() {
       endAccessor="end"
       style={{ height: 1000 }}
       onSelectEvent={handleOpen}
+      eventPropGetter={eventStyleGetter}
     />
     {open && <MedModal content={content} onClose={handleClose} open={open}/>}
-
   </div>
+  </>
   )
 }
