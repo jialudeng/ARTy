@@ -1,4 +1,4 @@
 # ARTy
 
 ## Demo
-![Alt Text](https://kapwi.ng/c/DHsaTerX)
+<img src="https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif" width="40" height="40" />
