@@ -1,2 +1,2 @@
 # ARTy demo
-[Imgur](https://i.imgur.com/OBkaIb8.gifv)
+![app demo](https://i.imgur.com/OBkaIb8.gif)
