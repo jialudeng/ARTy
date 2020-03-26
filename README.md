@@ -1,3 +1,3 @@
 # ARTy demo
-<img src="https://i.imgur.com/OBkaIb8.gif"  />
+<img src="https://i.imgur.com/OBkaIb8.gif" width="500" />
 
