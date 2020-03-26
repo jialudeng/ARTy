@@ -1,2 +1,3 @@
 # ARTy demo
-![app demo](https://i.imgur.com/OBkaIb8.gif)
+<img src="https://i.imgur.com/OBkaIb8.gif" width="200" height="auto" />
+
